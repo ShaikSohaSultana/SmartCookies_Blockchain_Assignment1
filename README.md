@@ -38,7 +38,7 @@ python p2p_chat.py
 
 ## Usage Instructions
 ### Menu Options
-** Menu **
+
 
 1.Send message
 
