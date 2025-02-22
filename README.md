@@ -1,76 +1,100 @@
-# Peer-to-Peer Communication System
+# Peer-to-Peer Chat Application
 
-## Project Description
-This project implements a **Peer-to-Peer (P2P) communication system** that allows multiple peers to connect, send messages, and manage connections. It is designed to facilitate decentralized communication between nodes in a network using Python's 'socket' and 'threading' libraries.
+## Team Information
+- **Team Name**: Smart Cookies  
+- **Team Members & Roll Numbers**:
+  - Eedubilli Lathika Priya - 230001026  
+  - Goskula Harshitha - 230001027  
+  - Shaik Soha Sultana - 230001071  
+
+## Overview
+This Peer-to-Peer (P2P) Chat Application, implemented in Python, enables direct communication between multiple peers while maintaining a dynamic list of connected users.
 
 ## Features
-1. **Send Message**: Allows a peer to send a message to another peer by specifying their IP address and port number.
+1. **Simultaneous Send & Receive**: Multi-threaded for concurrent messaging.
+2. **Peer List Management**: Dynamically updates active and all-time peer lists.
+3. **Structured Message Format**: Ensures consistent communication.
+4. **Query Functionality**: Allows users to view connected peers.
+5. **Manual & Automatic Peer Connectivity**: Supports both manual connections and auto-connect features.
+6. **Duplicate Entry Prevention**: Maintains unique peer entries.
+7. **Ephemeral Port Handling**: Correctly manages changing port numbers.
+8. **Disconnect Options**: Allows disconnecting from all or specific peers.
+9. **Connection Request Handling**: Manages peer connection requests.
 
-2. **Query Active Peers**: Displays the list of all currently known peers in the network.
+## System Requirements
+- **Programming Language**: Python 3.x
+- **Libraries**: socket, threading, select
+- **Operating System**: Windows / Linux / macOS
 
-3. **Connect to Active Peers**: Establishes connections with all known peers.
+## Installation & Setup
+1. Clone the repository:
+git clone https://github.com/yourusername/p2p-chat-app.git
+cd p2p-chat-app
 
-4. **Receive Messages**: Listens for incoming messages from other peers and updates the list of active peers.
+2. Run the application:
+python p2p_chat.py
 
-5. **Disconnect Options**:
-
-   -Disconnect from all peers.
-
-   -Disconnect from a specific peer (future implementation scope).
-
-7. **Quit**: Exits the application.
-
-## How It Works
-Each peer runs its own server to listen for incoming connections and messages.
-Peers maintain a list of active connections ('peers') that is dynamically updated as messages are exchanged.
-Messages include the sender's IP address and port, which are used to identify and add new peers.
-
-## Installation and Setup
-
-1. Clone this repository to your local machine.
-
-2. Ensure Python 3.x is installed on your system.
-
-3. Run the script using:
-  **p2p_chat.py**
-
-4. Follow the prompts to:
-
-   -Enter your team name.
-
-   -Specify your port number for hosting the server.
+3. Enter your team name and listening port when prompted.
 
 ## Usage Instructions
-1. After starting the program, you will see a menu with options:
+### Menu Options
+** Menu **
 
-   -Select "1" to send a message by specifying the recipient's IP, port, and message content.
-   
-    -Select "2" to view all active peers in the network.
-   
-    -Select "3" to connect to all known peers.
-   
-    -Select "0" to quit the application.
-   
-3. The program runs continuously until you choose to exit.
+1.Send message
 
-## Code Overview
-The main functionalities are implemented as follows:
-  
-  -receive_messages: Handles incoming messages and updates the peer list dynamically.
-  
-  -send_message: Sends messages formatted with sender details and team name.
-  
-  -query_peers: Displays all connected peers.
-  
-  -connect_to_peers: Attempts connections with all known peers.
+2.Query active peers
 
-## Group Information
-Group Name: Smart Cookies
+3.Send connection request
 
-Group Members:
-  
-  -Eedubilli Lathika Priya (Roll No: 230001026)
-  
-  -Goskula Harshitha (Roll No: 230001027)
-  
-  -Shaik Soha Sultana (Roll No: 230001071)
+4.Disconnect from all peers
+
+5.Disconnect from a specific peer
+
+6.Connect to active peers
+
+7.Quit
+
+
+### Sending a Message
+1. Choose option 1
+2. Enter recipient's IP, port, and your message
+
+### Querying Active Peers
+Choose option 2 to view connected peers
+
+### Connecting to Peers
+- Option 3: Manually connect to a peer
+- Option 6: Auto-connect to all known peers
+
+### Disconnecting
+- Option 4: Disconnect from all peers
+- Option 5: Disconnect from a specific peer
+
+### Exiting the Application
+Choose option 0
+
+## Message Format
+Messages follow this structure:
+
+<IP ADDRESS:PORT> <Team Name> <Your Message>
+
+
+## Technical Implementation
+- Multi-threading for concurrent operations
+- TCP sockets for reliable communication
+- Dynamic peer list management
+- Handling of ephemeral ports
+
+## Test Case: Basic Communication
+1. Start two instances (Peer A and Peer B) on different terminals.
+2. Peer A: TeamA, Port 5000
+3. Peer B: TeamB, Port 6000
+4. Peer A: Send connection request to Peer B
+5. Peer B: Accept connection
+6. Peer A: Send message "Hello from TeamA!"
+7. Peer B: Should receive the message
+8. Peer B: Query active peers (should show Peer A)
+
+This test demonstrates basic connectivity, messaging, and peer list updating.
+
+Current Date: Saturday, February 22, 2025, 10:18 PM IST
