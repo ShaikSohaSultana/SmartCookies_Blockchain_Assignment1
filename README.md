@@ -32,7 +32,7 @@ Messages include the sender's IP address and port, which are used to identify an
 2. Ensure Python 3.x is installed on your system.
 
 3. Run the script using:
-  ''' bash python p2p_chat.py'''
+  ** p2p_chat.py **
 
 4. Follow the prompts to:
 
@@ -42,7 +42,8 @@ Messages include the sender's IP address and port, which are used to identify an
 
 ## Usage Instructions
 1. After starting the program, you will see a menu with options:
-    -Select "1" to send a message by specifying the recipient's IP, port, and message content.
+
+   -Select "1" to send a message by specifying the recipient's IP, port, and message content.
    
     -Select "2" to view all active peers in the network.
    
