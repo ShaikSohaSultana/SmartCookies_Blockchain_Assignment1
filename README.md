@@ -32,7 +32,7 @@ Messages include the sender's IP address and port, which are used to identify an
 2. Ensure Python 3.x is installed on your system.
 
 3. Run the script using:
-  ** p2p_chat.py **
+  **p2p_chat.py**
 
 4. Follow the prompts to:
 
