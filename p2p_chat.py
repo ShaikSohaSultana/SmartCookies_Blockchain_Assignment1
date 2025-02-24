@@ -150,6 +150,19 @@ class Peer:
         except Exception as e:
             print(f"[ERROR] Connecting to {ip}:{port}: {e}")
 
+    def connect_directly(self, ip, port):
+        """Connects directly to a peer without sending a connection request."""
+        try:
+            with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as client_socket:
+                client_socket.connect((ip, port))
+                self.add_peer(ip, port)
+                print(f"[SUCCESS] Directly connected to {ip}:{port}")
+                client_socket.close()
+        except ConnectionRefusedError:
+            print(f"[ERROR] Connection refused by {ip}:{port}. Ensure the peer is running.")
+        except Exception as e:
+            print(f"[ERROR] Connecting to {ip}:{port}: {e}")
+
     def disconnect_from_peers(self, peer_to_disconnect=None):
         """Disconnects from all active peers or a specified peer."""
         if peer_to_disconnect:
@@ -236,6 +249,7 @@ def main():
         print("4. Disconnect from all peers")
         print("5. Disconnect from a specific peer")
         print("6. Connect to active peers")
+        print("7. Connect directly to a peer")
         print("0. Quit")
         
         choice = input("Do you want to make a choice? (y/n): ").strip().lower()
@@ -260,6 +274,10 @@ def main():
                 peer.disconnect_from_peers(peer_to_disconnect)
             elif choice == "6":  
                 peer.connect_to_active_peers()
+            elif choice == "7":
+                ip = input("Enter peer’s IP address: ")
+                port = int(input("Enter peer’s port number: "))
+                peer.connect_directly(ip, port)
             elif choice == "0":
                 peer.stop()
                 print("Exiting...")
@@ -274,4 +292,4 @@ def main():
             print("[ERROR] Invalid input. Please try again.")
 
 if __name__ == "__main__":
-    main()            
+    main()
