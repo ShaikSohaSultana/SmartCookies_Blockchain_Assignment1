@@ -6,7 +6,7 @@ class Peer:
     def __init__(self, name, port):
         self.name = name
         self.port = port
-        self.peers = set()  # Active peers
+        self.peers = set()  # Active peers (currently connected)
         self.all_peers = set()  # All peers who have interacted
         self.server_socket = None
         self.running = True
@@ -68,11 +68,13 @@ class Peer:
                 
                 # Print the received message in the desired format
                 print(f"{sender_ip}:{sender_port} [{team_name}]: {chat_message}")
+                
+                # Add the sender to the receiver's list of peers
                 self.add_peer(sender_ip, sender_port)
                 
                 if chat_message.lower() == "exit":
                     print(f"[INFO] Peer {sender_ip}:{sender_port} disconnected.")
-                    self.peers.discard((sender_ip, sender_port))
+                    self.peers.discard(f"{sender_ip}:{sender_port}")
             else:
                 print(f"[RECEIVED] Invalid format from {addr}: {message}")
 
@@ -96,10 +98,10 @@ class Peer:
                 response = client_socket.recv(1024).decode("utf-8").strip()
                 print(response)
                 
-                self.add_peer(ip, port)  
+                # Do not add the recipient to the sender's peer list
         except (socket.timeout, ConnectionRefusedError):
             print(f"[ERROR] Peer {ip}:{port} is unreachable. Removing from list.")
-            self.peers.discard((ip, port)) 
+            self.peers.discard(f"{ip}:{port}") 
         except Exception as e:
             print(f"[ERROR] Sending message to {ip}:{port}: {e}")
 
@@ -114,7 +116,7 @@ class Peer:
     def query_peers(self):
         """Displays active and all peers."""
         if self.peers:
-            print("\nActive Peers:")
+            print("\nActive Peers (currently connected):")
             for peer in self.peers:
                 print(peer)
         else:
